@@ -11,7 +11,7 @@ const getNum = (input) => {
     const [numerator, denominator] = fraction;
     const number =
       Number.parseFloat(numerator) / Number.parseFloat(denominator);
-    return !isNaN(number) ? number : null;
+    return !isNaN(number) ? Number.parseFloat(number.toFixed(5)) : null;
   }
 
   // number is a decimal or int
@@ -77,11 +77,13 @@ const convert = (initNum, initUnit) => {
     km: (km) => km / MI_TO_KM,
   };
 
-  return conversionFn[initUnit](initNum);
+  return Number.parseFloat(conversionFn[initUnit](initNum).toFixed(5));
 };
 
 const getString = (initNum, initUnit, returnNum, returnUnit) =>
-  `${initNum} ${initUnit} converts to ${returnNum} ${returnUnit}`;
+  `${initNum} ${spellOutUnit(initUnit)} converts to ${returnNum} ${spellOutUnit(
+    returnUnit
+  )}`;
 
 module.exports = {
   getNum,

@@ -13,8 +13,8 @@ module.exports = (app) => {
 
     if (!initNum && !initUnit)
       return res.status(BAD_REQUEST).json({ error: "invalid number and unit" });
-    if (!initUnit)
-      return res.status(BAD_REQUEST).json({ error: "invalid unit" });
+    // as of Oct 26, 2020, FCCs tests for this project fail unless status is 200
+    if (!initUnit) return res.status(200).json({ error: "invalid unit" });
     if (!initNum)
       return res.status(BAD_REQUEST).json({ error: "invalid number" });
 
